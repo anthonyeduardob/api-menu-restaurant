@@ -96,17 +96,21 @@ class MenuController {
         try {
             // DEFININDO PARAMETROS DE VALIDACAO
             const bodySchema = z.object({
-                id: z
-                    .string({ required_error: "ID é obrigatório" }),
+                id: z.string({ required_error: "ID é obrigatório" }),
             })
-            console.log('12')
+            
             const data = request.params;
 
-            // VALIDANDO O ID RECEBIDO
+            // VALIDANDO O ID 
             const dataParsed = bodySchema.parse(data)
 
             // REMOVENDO DO BANCO DE DADOS
-            await this.db.delete(this.table, Number(dataParsed.id));
+            const wasDeleted = await this.db.delete(this.table, Number(dataParsed.id))
+
+            // SE O ID NAO EXISTIR, RETORNA O AVISO PARA O CLIENTE
+            if (!wasDeleted) {
+                return response.status(404).json({ message: `Nenhum prato encontrado com o ID: ${dataParsed.id}`})
+            }
 
             return response.status(200).json({ message: "Prato removido com sucesso!"})
         } catch (error) {
