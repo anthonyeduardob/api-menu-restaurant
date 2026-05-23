@@ -3,7 +3,7 @@ import fs from "node:fs/promises"
 const DATABASE_PATH = new URL("database.json", import.meta.url)
 
 class Database {
-    #database = {}
+    #database: Record<string, any[]> = {}
 
     constructor() {
         // INICIANDO O BD
