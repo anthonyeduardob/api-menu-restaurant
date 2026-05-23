@@ -38,18 +38,21 @@ class Database {
         return this.#database[table] ?? []
     }
 
-    async delete(table: string, id: number) {
+    async delete(table: string, id: number): Promise<boolean> {
         // BUSCANDO O INCIDE DO PRATO PELO ID NOS REGISTROS
-        const rowIndex = this.#database[table].findIndex((row: any) => row.id === id);
+        const rowIndex = this.#database[table]?.findIndex((row: { id: number }) => row.id === id);
         console.log(rowIndex)
 
         if (rowIndex > -1) {
             // REMOVE O ITEM DO ARRAY
-            //this.#database[table].splice(rowIndex, 1);
+            this.#database[table].splice(rowIndex, 1);
 
             // SALVA A ALTERACAO NO ARQUIVO JSON
             await this.#persist();
+            return true
         }
+        return false
+        // SE NAO ENCONTRAR O PRATO PELO ID INFORMADO, RETORNA FALSE PARA O CONTROLLER
     }
 }
 
