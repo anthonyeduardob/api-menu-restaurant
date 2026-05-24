@@ -15,9 +15,9 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(routes(db))
 
-app.use(async (error: any, request: Request, response: Response, _: NextFunction) => {
+app.use((error: any, request: Request, response: Response, _: NextFunction) => {
     if (error instanceof ZodError) {
-        return await response
+        return response
             .status(400)
             .json({ message: "Erro com dados informados!", issues: error.format() })
     }

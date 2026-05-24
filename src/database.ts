@@ -41,7 +41,6 @@ class Database {
     async delete(table: string, id: number): Promise<boolean> {
         // BUSCANDO O INCIDE DO PRATO PELO ID NOS REGISTROS
         const rowIndex = this.#database[table]?.findIndex((row: { id: number }) => row.id === id);
-        console.log(rowIndex)
 
         if (rowIndex > -1) {
             // REMOVE O ITEM DO ARRAY

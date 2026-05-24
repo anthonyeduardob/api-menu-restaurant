@@ -25,12 +25,12 @@ GET http://localhost:3000/menu
 [
   {
     "id": 1,
-    "nome": "Bolonesa",
-    "preco": 30,
-    "descricao": "Pizza prepara no forno a lenha.",
-    "categoria": "Massas",
-    "ingredientes": "Molho de tomate, mussarela, frango",
-    "img": "pizza.png"
+    "nome": "Picanha na Chapa com Fritas",
+    "preco": 49.90,
+    "descricao": "Suculenta picanha grelhada no ponto, servida com fritas crocantes e arroz branco..",
+    "categoria": "Carnes",
+    "ingredientes": "Picanha, sal grosso, batata, óleo, alho, arroz",
+    "img": "https://exemplo.com/imagens/picanha.jpg"
   }
 ]
 ```
@@ -78,10 +78,10 @@ Content-Type: application/json
 **Body**
 ```json
 {
-  "nome": "Bolonesa",
+  "nome": "Pizza de frango",
   "preco": 30,
   "descricao": "Pizza prepara no forno a lenha.",
-  "categoria": "Massas",
+  "categoria": "Pizzas",
   "ingredientes": "Molho de tomate, mussarela, frango",
   "img": "pizza.png"
 }

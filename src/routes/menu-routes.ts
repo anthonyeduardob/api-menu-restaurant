@@ -11,19 +11,15 @@ export function menuRoutes(db: Database) {
     // Passa o db para o Controller
     const menuController = new MenuController(db);
     // RETORNO DE TODOS OS ITENS
-    // routes.get("/", menuController.index);
     routes.get("/", (request, response) => menuController.index(request, response));
 
     // RETORNO DE UM ITEM ESPECIFICO
-    // routes.get("/:id", menuController.show);
     routes.get("/:id", (request, response) => menuController.show(request, response));
 
     // CRIACAO DE UM ITEM (DEFINIFININDO O ID PELO MIDDLEWARE)
-    // routes.post("/", setIdMiddleware(db), menuController.create);
     routes.post("/", setIdMiddleware(db), (request, response, next) => menuController.create(request, response, next));
 
     // REMOCAO DE UM ITEM ESPECICO
-    // routes.delete("/:id", menuController.remove);
     routes.delete("/:id", (request, response, next) => menuController.remove(request, response, next));
 
     return routes;
